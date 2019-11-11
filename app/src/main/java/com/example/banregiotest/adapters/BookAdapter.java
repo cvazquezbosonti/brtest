@@ -1,8 +1,7 @@
 package com.example.banregiotest.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,17 +11,16 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.banregiotest.R;
+import com.example.banregiotest.detail;
 import com.example.banregiotest.models.Book;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class BookAdapter extends RecyclerView.Adapter <BookAdapter.ViewHolder>{
 
     ArrayList<Book> ListBoocks;
+    Gson gson = new Gson();
     Context context;
 
     public BookAdapter(Context context, ArrayList<Book>boocks)
@@ -33,21 +31,29 @@ public class BookAdapter extends RecyclerView.Adapter <BookAdapter.ViewHolder>{
 
 
 
-    public  class ViewHolder extends RecyclerView.ViewHolder
+    public  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         TextView title, author, category;
         ImageView imageBoock;
         public ViewHolder(View vista)
         {
             super(vista);
-
+            vista.setOnClickListener(this);
             title=(TextView)vista.findViewById(R.id.titulobook);
             author=(TextView)vista.findViewById(R.id.autorbook);
             category=(TextView)vista.findViewById(R.id.categoriabook);
             imageBoock=(ImageView)vista.findViewById(R.id.imagebook);
 
+        }
 
 
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(context, detail.class);
+            String dtaExtra= gson.toJson(ListBoocks.get(getAdapterPosition()));
+            intent.putExtra("dataBook",dtaExtra);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         }
     }
 
@@ -56,8 +62,6 @@ public class BookAdapter extends RecyclerView.Adapter <BookAdapter.ViewHolder>{
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_of_book,parent,false);
        ViewHolder vh = new ViewHolder(v);
         return  vh;
-
-
     }
 
     @Override
@@ -67,8 +71,8 @@ public class BookAdapter extends RecyclerView.Adapter <BookAdapter.ViewHolder>{
             holder.author.setText(ListBoocks.get(position).getAuthor().getFirst_name()+","+ListBoocks.get(position).getAuthor().getLast_name());
             holder.category.setText(ListBoocks.get(position).getCategory());
             Picasso.with(this.context).load(ListBoocks.get(position).getImage_url()).into(holder.imageBoock);
-
     }
+
 
 
     @Override
