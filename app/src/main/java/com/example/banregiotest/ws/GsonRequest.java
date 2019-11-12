@@ -7,6 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 
 import org.json.JSONObject;
@@ -19,7 +20,7 @@ public class GsonRequest <T> extends Request<T> {
     private final Class<T> clazz;
     private final Map<String, String> headers;
     private final Response.Listener<T> listener;
-    private JSONObject parameters = null;
+    private JsonObject parameters = null;
 
 
     public GsonRequest(int method, String url, Class<T> clazz, Map<String, String> headers,
@@ -31,7 +32,7 @@ public class GsonRequest <T> extends Request<T> {
     }
 
     public GsonRequest(int method, String url, Class<T> clazz, Map<String, String> headers,
-                       Response.Listener<T> listener, Response.ErrorListener errorListener, JSONObject parameters) {
+                       Response.Listener<T> listener, Response.ErrorListener errorListener, JsonObject parameters) {
         this(method, url, clazz, headers, listener, errorListener);
         this.parameters = parameters;
     }

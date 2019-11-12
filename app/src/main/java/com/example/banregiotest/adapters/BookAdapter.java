@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,19 +18,61 @@ import com.example.banregiotest.models.Book;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
+import java.util.Collection;
 
-public class BookAdapter extends RecyclerView.Adapter <BookAdapter.ViewHolder>{
+public class BookAdapter extends RecyclerView.Adapter <BookAdapter.ViewHolder> implements Filterable {
 
     ArrayList<Book> ListBoocks;
+    ArrayList<Book> BookListAll;
     Gson gson = new Gson();
     Context context;
 
     public BookAdapter(Context context, ArrayList<Book>boocks)
     {
         this.ListBoocks=boocks;
+        this.BookListAll= new ArrayList<>(boocks);
         this.context=context;
     }
 
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    Filter filter= new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<Book> filterlist = new ArrayList<>();
+            if(constraint.toString().isEmpty())
+            {
+                filterlist.addAll(BookListAll);
+            }
+            else{
+                for(Book book: BookListAll)
+                {
+                    if(book.getTitle().toLowerCase().contains(constraint))
+                    {filterlist.add(book);}
+                    if(book.getAuthor().getFirst_name().toLowerCase().contains(constraint)){filterlist.add(book);}
+                    if(book.getCategory().toLowerCase().contains(constraint)){filterlist.add(book);}
+                    if(String.valueOf(book.getIsbn()).toLowerCase().contains(constraint)){filterlist.add(book);}
+                    if(book.getDescription().toLowerCase().contains(constraint)){filterlist.add(book);}
+                    if(String.valueOf(book.getPages()).toLowerCase().contains(constraint)){filterlist.add(book);}
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values=filterlist;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+          ListBoocks.clear();
+          ListBoocks.addAll((Collection<? extends Book>) results.values);
+          notifyDataSetChanged();
+
+        }
+    };
 
 
     public  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener

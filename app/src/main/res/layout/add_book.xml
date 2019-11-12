@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/inputTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="Title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputFirstname"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="First name author"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputLastname"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="Last name author"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/inputCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="Category"/>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/inputDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:inputType="text|textMultiLine"
+        android:hint="Description"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputIsbn"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginTop="5dp"
+            android:hint="Isbn"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputPages"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="Pages"/>
+
+    </LinearLayout>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/inputDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:inputType="text"
+        android:hint="Publication date"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/inputPublisher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:inputType="text"
+        android:hint="Publisher"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btncancel"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginTop="5dp"
+            android:hint="cancel"
+            android:background="@color/colorAccent"
+            android:layout_margin="3dp"
+            android:textColor="#ffffff"/>
+        <Button
+            android:id="@+id/btnsave"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginTop="5dp"
+            android:hint="save"
+            android:background="@color/colorPrimary"
+            android:layout_margin="3dp"
+            android:textColor="#ffffff"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+
+
+
+
+</androidx.core.widget.NestedScrollView>

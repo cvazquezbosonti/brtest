@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".detail" android:configChanges="orientation|screenSize|keyboardHidden"/>
+        <activity android:name=".addbook" android:configChanges="orientation|screenSize|keyboardHidden"/>
     </application>
 
 </manifest>
